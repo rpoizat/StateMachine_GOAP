@@ -3,16 +3,14 @@
 
 #include "pch.h"
 #include <iostream>
-#include "StateMachine.hpp"
-
-
+#include "StateMachine.h"
 
 int main()
 {
 	//créer la state machine
 	Smol_Brain broly;
 
-	while (broly.GetState().GetNom() != "VICTOIRE" || broly.GetState().GetNom() != "DEFAITE")
+	while (broly.GetState() != "VICTOIRE" || broly.GetState() != "DEFAITE")
 	{
 		broly.Next_State();
 	}
