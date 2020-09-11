@@ -1,3 +1,5 @@
+#pragma once
+#include "pch.h"
 #include "Transition.h"
 #include <iostream>
 //condition sur le nombre de pv

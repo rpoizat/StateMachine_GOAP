@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "StateMachine.h"
+#include "Etat.h"
 
 
 //constructeur
@@ -39,12 +39,6 @@ pair<Transition*, Etat*> Etat::GetTrans(const unsigned int i)
 	return transitions[i];
 }
 
-//getteur sur la transition
-pair<Transition*, Etat*> Etat::GetTrans(const unsigned int i)
-{
-	return transitions[i];
-}
-
 //ajout d'une transition à l'état
 void Etat::AjoutTransition(Transition* t, Etat* e)
 {
@@ -57,7 +51,7 @@ const string Etat::GetNom() const
 	return nom;
 }
 
-void Etat::Effet(Smol_Brain* b)
+void Etat::Effet(Data* b)
 {
 
 }
@@ -75,7 +69,7 @@ Etat_neutral::Etat_neutral(string n, unsigned int nb)
 	nbTransition = nb;
 }
 
-void Etat_neutral::Effet(Smol_Brain* b)
+void Etat_neutral::Effet(Data* b)
 {
 
 }
@@ -87,7 +81,7 @@ Etat_combo::Etat_combo(const string n, const unsigned int nb)
 	nbTransition = nb;
 }
 
-void Etat_combo::Effet(Smol_Brain* b)
+void Etat_combo::Effet(Data* b)
 {
 	//gain de meter
 	b->AddMeter();
@@ -100,7 +94,7 @@ Etat_punish::Etat_punish(const string n, const unsigned int nb)
 	nbTransition = nb;
 }
 
-void Etat_punish::Effet(Smol_Brain* b)
+void Etat_punish::Effet(Data* b)
 {
 	//perte de point de vies
 	b->TakeDamage();
@@ -113,7 +107,7 @@ Etat_avancer::Etat_avancer(const string n, const unsigned int nb)
 	nbTransition = nb;
 }
 
-void Etat_avancer::Effet(Smol_Brain* b)
+void Etat_avancer::Effet(Data* b)
 {
 	//gain de meter
 	b->ReduceDistance(true);
@@ -126,7 +120,7 @@ Etat_zoning::Etat_zoning(const string n, const unsigned int nb)
 	nbTransition = nb;
 }
 
-void Etat_zoning::Effet(Smol_Brain* b)
+void Etat_zoning::Effet(Data* b)
 {
 	//gain de meter
 	b->ReduceDistance(false);

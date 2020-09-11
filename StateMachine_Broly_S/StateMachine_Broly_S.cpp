@@ -8,7 +8,7 @@
 int main()
 {
 	//créer la state machine
-	Smol_Brain broly;
+	SmolBrain broly;
 
 	while (broly.GetState() != "VICTOIRE" || broly.GetState() != "DEFAITE")
 	{

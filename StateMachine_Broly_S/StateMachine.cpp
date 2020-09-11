@@ -1,9 +1,10 @@
+#pragma once
 #include "StateMachine.h"
 #include "pch.h"
 #include <iostream>
 
 //constructeur
-Smol_Brain::Smol_Brain()
+SmolBrain::SmolBrain()
 {
 	neutral_sol = Etat_neutral("NEUTRAL", 3);
 	avancer = Etat_avancer("SUPER DASH", 3);
@@ -35,42 +36,29 @@ Smol_Brain::Smol_Brain()
 	avancer.AjoutTransition(new TransitionCheckDistance(10), &zoning);
 
 	//état de départ
-	current_state = neutral_sol;
+	current_state = &neutral_sol;
 }
 
 //destructeur
-Smol_Brain::~Smol_Brain()
+SmolBrain::~SmolBrain()
 {
 
 }
 
-//gain de meter
-void Smol_Brain::AddMeter()
+//getteur sur les données
+Data& SmolBrain::GetDataForEdit()
 {
-	meter++;
-}
-
-//perte de point de vie
-void Smol_Brain::TakeDamage()
-{
-	pv -= 2500;
-}
-
-//réduction de la distance
-void Smol_Brain::ReduceDistance(bool i)
-{
-	if (i) distance = 0;
-	else distance -= rand() % distance;
+	return donnees;
 }
 
 //getteur sur l'état courant
-string Smol_Brain::GetState()
+string SmolBrain::GetState()
 {
 	return current_state->GetNom();
 }
 
 //choisir le prochain état
-void Smol_Brain::Next_State()
+void SmolBrain::Next_State()
 {
 	unsigned int taille = current_state->GetNbTrans();
 
@@ -83,10 +71,10 @@ void Smol_Brain::Next_State()
 		auto current_Trans = current_state->GetTrans(i);
 		Transition* t = current_Trans.first;
 
-		if (t->Process(pv, meter, distance))
+		if (t->Process(donnees.GetPv(), donnees.GetMeter(), donnees.GetDistance()))
 		{
 			current_state = current_Trans.second;
-			current_state->Effet(this);
+			current_state->Effet(&donnees);
 		}
 	}
 }
