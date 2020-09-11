@@ -1,6 +1,6 @@
 #pragma once
-#include "StateMachine.h"
 #include "pch.h"
+#include "StateMachine.h"
 #include <iostream>
 
 //constructeur
@@ -9,14 +9,14 @@ SmolBrain::SmolBrain()
 	neutral_sol = Etat_neutral("NEUTRAL", 3);
 	avancer = Etat_avancer("SUPER DASH", 3);
 	zoning = Etat_zoning("ZONING", 2);
-	frappe_sol = Etat("AUTO COMBO", 1);
+	frappe_sol = Etat("LA FRAPPE", 1);
 	combo = Etat_combo("COMBO", 2);
 	super = Etat("LV3", 1);
 	punish = Etat_punish("PUNISH", 2);
 	victoire = Etat("VICTOIRE", 0);
 	mort = Etat("MORT", 0);
 
-	neutral_sol.AjoutTransition(new TransitionCheckDistance(0), &frappe_sol);
+	neutral_sol.AjoutTransition(new TransitionCheckDistance(1), &frappe_sol);
 	neutral_sol.AjoutTransition(new TransitionCheckDistance(8), &avancer);
 	neutral_sol.AjoutTransition(new TransitionCheckDistance(10), &zoning);
 
@@ -37,6 +37,8 @@ SmolBrain::SmolBrain()
 
 	//état de départ
 	current_state = &neutral_sol;
+
+	donnees = Data();
 }
 
 //destructeur
@@ -63,7 +65,7 @@ void SmolBrain::Next_State()
 	unsigned int taille = current_state->GetNbTrans();
 
 	string s = current_state->GetNom();
-	cout << "ETAT : " << s << endl;
+	
 
 	//passer à l'état suivant
 	for (unsigned int i = 0; i < taille; i++)

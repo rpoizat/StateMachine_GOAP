@@ -12,9 +12,9 @@ private:
 public:
 	Data();
 
-	inline unsigned int GetPv() const;
-	inline unsigned short int GetMeter() const;
-	inline unsigned short int GetDistance() const;
+	 unsigned int GetPv() const;
+	 unsigned short int GetMeter() const;
+	 unsigned short int GetDistance() const;
 
 	void TakeDamage();
 	void AddMeter();

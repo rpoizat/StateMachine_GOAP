@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Etat.h"
-
+#include <iostream>
 
 //constructeur
 Etat::Etat()
@@ -21,10 +21,7 @@ Etat::Etat(const string n, const unsigned int nb_trans)
 //destructeur
 Etat::~Etat()
 {
-	for (unsigned int i = 0; i < nbTransition; i++)
-	{
-		delete(&transitions);
-	}
+
 }
 
 //getteur sur le nombre de transition
@@ -53,7 +50,7 @@ const string Etat::GetNom() const
 
 void Etat::Effet(Data* b)
 {
-
+	std::cout << nom << endl;
 }
 
 Etat_neutral::Etat_neutral()
@@ -71,7 +68,7 @@ Etat_neutral::Etat_neutral(string n, unsigned int nb)
 
 void Etat_neutral::Effet(Data* b)
 {
-
+	std::cout << "NEUTRAL distance : " << b->GetDistance() << std::endl;
 }
 
 //constructeur combo
@@ -85,6 +82,7 @@ void Etat_combo::Effet(Data* b)
 {
 	//gain de meter
 	b->AddMeter();
+	std::cout << " Combo Hit +1 Meter : " << b->GetMeter() << " de Meter" << std::endl;
 }
 
 //constructeur punish
@@ -98,6 +96,7 @@ void Etat_punish::Effet(Data* b)
 {
 	//perte de point de vies
 	b->TakeDamage();
+	std::cout << " Perte de 2500 PV : " << b->GetPv() << "pv restants" << std::endl;
 }
 
 //constructeur avancer
@@ -110,6 +109,7 @@ Etat_avancer::Etat_avancer(const string n, const unsigned int nb)
 void Etat_avancer::Effet(Data* b)
 {
 	//gain de meter
+	std::cout << " SUPER DASH ! ";
 	b->ReduceDistance(true);
 }
 
@@ -123,5 +123,6 @@ Etat_zoning::Etat_zoning(const string n, const unsigned int nb)
 void Etat_zoning::Effet(Data* b)
 {
 	//gain de meter
+	std::cout << "ZONING ! ";
 	b->ReduceDistance(false);
 }

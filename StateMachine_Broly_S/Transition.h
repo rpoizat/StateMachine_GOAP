@@ -7,21 +7,21 @@ class Transition
 {
 	public:
 
-		virtual bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance)=0;
+		virtual bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance)=0;
 };
 
 class TransitionIsAlive : public Transition
 {
 public:
 
-	bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance);
+	bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance);
 };
 
 class TransitionMeter : public Transition
 {
 public :
 	
-	bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance);
+	bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance);
 };
 
 class TransitionIsBlocked : public Transition
@@ -30,7 +30,7 @@ public:
 
 	TransitionIsBlocked() {};
 
-	bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance);
+	bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance);
 };
 
 class TransitionCheckDistance : public Transition
@@ -46,28 +46,28 @@ public:
 	//constructeur
 	TransitionCheckDistance(unsigned int mi);
 
-	bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance);
+	bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance);
 };
 
 class TransitionCombo : public Transition
 {
 public:
 
-	bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance);
+	bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance);
 };
 
 class TransitionMort : public Transition
 {
 public:
 
-	bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance);
+	bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance);
 };
 
 class TransitionVictoire : public Transition
 {
 public:
 
-	bool Process(const unsigned int pv, const unsigned int meter, const unsigned int distance);
+	bool Process(const unsigned int pv, const unsigned short int meter, const unsigned short int distance);
 };
 
 #endif
