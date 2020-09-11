@@ -21,7 +21,22 @@ Etat::Etat(const string n, const unsigned int nb_trans)
 //destructeur
 Etat::~Etat()
 {
+	for (int i = 0; i < transitions.size(); i++)
+	{
+		if (transitions[i].first != nullptr)
+		{
+			delete(transitions[i].first);
+			transitions[i].first = nullptr;
+		}
 
+		if (transitions[i].second != nullptr)
+		{
+			delete(transitions[i].second);
+			transitions[i].second = nullptr;
+		}
+	}
+
+	transitions.clear();
 }
 
 //getteur sur le nombre de transition

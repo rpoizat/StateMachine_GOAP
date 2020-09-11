@@ -12,15 +12,15 @@ private:
 
 	Etat *current_state;
 
-	Etat_neutral neutral_sol;
-	Etat_avancer avancer;
-	Etat_zoning zoning;
-	Etat frappe_sol;
-	Etat_combo combo;
-	Etat super;
-	Etat_punish punish;
-	Etat victoire;
-	Etat mort;
+	Etat_neutral* neutral_sol;
+	Etat_avancer* avancer;
+	Etat_zoning* zoning;
+	Etat* frappe_sol;
+	Etat_combo* combo;
+	Etat* super;
+	Etat_punish* punish;
+	Etat* victoire;
+	Etat* mort;
 
 	Data donnees;
 
